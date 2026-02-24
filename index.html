@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Rohan ❤️ Shruthi | The Wedding</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <style>
+    :root {
+      --primary: #d14d72;
+      --secondary: #ff9a9e;
+      --bg-gradient: linear-gradient(135deg, #fffafc 0%, #fdf1f6 100%);
+      --glass: rgba(255, 255, 255, 0.85);
+      --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+      --text: #4a4a4a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: var(--bg-gradient);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { margin: 0; }
+
+    /* ✅ HEADER */
+    header {
+      min-height: 70vh; 
+      background: linear-gradient(135deg, #d14d72 0%, #ff9a9e 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 20%),
+                        radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 20%);
+      pointer-events: none;
+    }
+
+    .hearts-bg {
+      position: absolute;
+      width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .hearts-bg span {
+      position: absolute;
+      display: block;
+      width: 20px; height: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      animation: floatUp 10s linear infinite;
+      bottom: -150px;
+      clip-path: path("M12 21.593c-5.63-5.539-11-5.431-11-8.944 0-2.649 2.153-4.648 4.649-4.648 2.053 0 3.733 1.258 4.351 3.033a4.654 4.654 0 0 1 4.352-3.033c2.496 0 4.649 1.999 4.649 4.648 0 3.513-5.37 3.405-11 8.944");
+    }
+    
+    .hearts-bg span:nth-child(1) { left: 10%; width: 30px; height: 30px; animation-duration: 12s; }
+    .hearts-bg span:nth-child(2) { left: 30%; width: 20px; height: 20px; animation-duration: 8s; animation-delay: 2s; }
+    .hearts-bg span:nth-child(3) { left: 70%; width: 40px; height: 40px; animation-duration: 15s; animation-delay: 4s; }
+    .hearts-bg span:nth-child(4) { left: 90%; width: 25px; height: 25px; animation-duration: 10s; animation-delay: 1s; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      20% { opacity: 0.6; }
+      100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 40px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      margin: 20px;
+    }
+
+    .hero-title {
+      font-family: "Great Vibes", cursive;
+      font-size: 5rem;
+      line-height: 1.1;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      margin-bottom: 10px;
+    }
+
+    .hero-date {
+      font-size: 1.5rem;
+      font-weight: 300;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      opacity: 0.95;
+    }
+
+    .hero-time {
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-top: 5px;
+      opacity: 0.9;
+    }
+    
+    .hero-sub {
+      font-size: 1rem;
+      margin-top: 15px;
+      font-style: italic;
+      opacity: 0.8;
+      border-top: 1px solid rgba(255,255,255,0.4);
+      display: inline-block;
+      padding-top: 10px;
+    }
+
+    /* ✅ SECTIONS */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
+
+    .section-title {
+      font-family: "Great Vibes", cursive;
+      font-size: 3rem;
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    /* ✅ MODERN CARDS */
+    .card {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 35px;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px 0 rgba(209, 77, 114, 0.15);
+      text-align: center;
+      margin-bottom: 50px;
+      border: var(--glass-border);
+    }
+
+    /* ✅ STORY TIMELINE */
+    .story-timeline {
+      position: relative;
+      padding: 10px 0;
+    }
+    
+    .story-item {
+      padding: 25px;
+      background: white;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      border-left: 5px solid var(--primary);
+      position: relative;
+      transition: transform 0.3s;
+    }
+    
+    .story-item:hover { transform: translateY(-5px); }
+
+    .story-item h3 { color: var(--primary); font-size: 1.3rem; margin-bottom: 8px; }
+    .story-item p { font-size: 0.95rem; line-height: 1.7; color: #666; }
+    .story-icon { font-size: 1.8rem; margin-bottom: 15px; display: block; }
+
+    /* ✅ COUNTDOWN */
+    .countdown-box {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+    }
+    .time-unit {
+      background: linear-gradient(135deg, var(--primary), #b23a62);
+      color: white;
+      padding: 15px 10px;
+      border-radius: 16px;
+      width: 75px;
+      box-shadow: 0 8px 20px rgba(209, 77, 114, 0.3);
+    }
+    .time-unit span { display: block; font-size: 1.6rem; font-weight: bold; margin-bottom: 2px;}
+    .time-unit small { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
+
+    /* ✅ CAROUSEL (DESKTOP FRIENDLY) */
+    .swiper {
+      width: 100%;
+      padding-top: 20px;
+      padding-bottom: 60px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+
+    .swiper-slide {
+      background-position: center;
+      background-size: cover;
+      width: 280px;
+      height: 400px;
+      background: white;
+      padding: 10px; 
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .swiper-slide-active {
+      transform: scale(1.05);
+      z-index: 10;
+      box-shadow: 0 20px 50px rgba(209, 77, 114, 0.25);
+    }
+
+    /* NAVIGATION BUTTONS */
+    .swiper-button-next, .swiper-button-prev {
+      color: var(--primary);
+      background: rgba(255, 255, 255, 0.8);
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .swiper-button-next::after, .swiper-button-prev::after {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .swiper-pagination-bullet-active {
+      background: var(--primary) !important;
+      width: 25px; border-radius: 5px;
+      transition: width 0.3s;
+    }
+
+    /* ✅ MOBILE ADJUSTMENTS (HIDE ARROWS) */
+    @media (max-width: 768px) {
+      .swiper-button-next, .swiper-button-prev {
+        display: none !important;
+      }
+      .swiper {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+
+    /* ✅ MODERN ZOOM VIEWER */
+    #image-viewer {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(20, 20, 20, 0.4); 
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    #image-viewer.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #image-viewer img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      transform: scale(0.9);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27);
+    }
+
+    #image-viewer.active img {
+      transform: scale(1);
+    }
+
+    .close-viewer {
+      position: absolute;
+      top: 30px; right: 30px;
+      background: white;
+      color: black;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center; justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* ✅ EVENTS TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 20px;
+      border-left: 2px solid var(--secondary);
+    }
+
+    .event-item {
+      position: relative;
+      margin-bottom: 50px;
+      padding-left: 30px;
+    }
+
+    .event-item::before {
+      content: "♥";
+      position: absolute;
+      left: -29px;
+      top: 0;
+      background: var(--primary);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .event-date {
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .event-title { font-size: 1.5rem; margin-bottom: 5px; font-weight: 600; }
+    .event-loc { font-size: 1rem; color: #666; margin-bottom: 15px; display: flex; align-items: center; gap: 5px; }
+
+    /* ✅ MAPS */
+    .map-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 5px solid white;
+    }
+    
+    .map-container iframe {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      border: 0;
+    }
+
+    /* ✅ FOOTER */
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+      border-radius: 30px 30px 0 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="image-viewer" onclick="closeViewer()">
+    <div class="close-viewer">×</div>
+    <img id="viewer-img" src="" alt="Full View" onclick="event.stopPropagation()">
+  </div>
+
+  <header>
+    <div class="hearts-bg">
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="hero-content" data-aos="fade-down">
+      <div class="hero-title">Rohan <br> & <br> Shruthi</div>
+      <p class="hero-date">March 6th, 2026</p>
+      <p class="hero-time">9:45 AM</p>
+      <span class="hero-sub">We're Getting Married!</span>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <h2 class="section-title" data-aos="fade-up">Our Journey</h2>
+    <div class="story-timeline">
+      
+      <div class="story-item" data-aos="fade-up">
+        <span class="story-icon">👀</span>
+        <h3>The First Glance</h3>
+        <p>It all started with an unexpected <b>Pelli Chupulu</b>. We met, we spoke, and right from that very first conversation, we felt a spark that we knew was special.</p>
+      </div>
+
+      <div class="story-item" data-aos="fade-up">
+        <span class="story-icon">📱</span>
+        <h3>Connecting Hearts</h3>
+        <p>Strangers became friends, and friends became soulmates. Our days turned into endless phone calls, sharing laughs, routines, and dreams.</p>
+      </div>
+
+      <div class="story-item" data-aos="fade-up">
+        <span class="story-icon">💍</span>
+        <h3>The Promise</h3>
+        <p>On <b>22nd February 2026</b>, we made it official! With rings on our fingers and love in our hearts, we promised to be each other's forever.</p>
+      </div>
+
+    </div>
+
+    <div class="card" data-aos="zoom-in" style="margin-top: 50px;">
+      <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 10px;">The Big Day</h2>
+      <p style="color: #666;">Counting down the seconds until forever.</p>
+      
+      <div class="countdown-box" id="countdown">
+        <div class="time-unit"><span id="days">00</span><small>Days</small></div>
+        <div class="time-unit"><span id="hours">00</span><small>Hrs</small></div>
+        <div class="time-unit"><span id="mins">00</span><small>Mins</small></div>
+        <div class="time-unit"><span id="secs">00</span><small>Secs</small></div>
+      </div>
+    </div>
+
+    <h2 class="section-title" data-aos="fade-up">Our Moments</h2>
+    <p style="text-align:center; color:#888; margin-bottom: 20px; font-size: 0.9rem;">Tap any photo to view</p>
+    
+    <div class="swiper mySwiper" data-aos="fade-up">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" onclick="openViewer('assets/couple1.jpg')"><img src="assets/couple1.jpg" alt="Couple 1"></div>
+        <div class="swiper-slide" onclick="openViewer('assets/couple2.jpg')"><img src="assets/couple2.jpg" alt="Couple 2"></div>
+        <div class="swiper-slide" onclick="openViewer('assets/couple3.jpg')"><img src="assets/couple3.jpg" alt="Couple 3"></div>
+        <div class="swiper-slide" onclick="openViewer('assets/couple4.jpg')"><img src="assets/couple4.jpg" alt="Couple 4"></div>
+        
+        <div class="swiper-slide" onclick="openViewer('assets/couple1.jpg')"><img src="assets/couple1.jpg" alt="Couple 1"></div>
+        <div class="swiper-slide" onclick="openViewer('assets/couple2.jpg')"><img src="assets/couple2.jpg" alt="Couple 2"></div>
+        <div class="swiper-slide" onclick="openViewer('assets/couple3.jpg')"><img src="assets/couple3.jpg" alt="Couple 3"></div>
+        <div class="swiper-slide" onclick="openViewer('assets/couple4.jpg')"><img src="assets/couple4.jpg" alt="Couple 4"></div>
+      </div>
+      
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <h2 class="section-title" style="margin-top: 60px;" data-aos="fade-up">The Celebration</h2>
+    
+    <div class="timeline">
+      
+      <div class="event-item" data-aos="fade-right">
+        <span class="event-date">March 4, 2026</span>
+        <h3 class="event-title">🌼 Haldi Ceremony</h3>
+        <p class="event-loc">📍 Home, Kazipet</p>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3795.1501180988816!2d79.49518607499941!3d17.971751483018608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a334f7cbc3685ed%3A0x5235b9fca0b02edf!2sSiri%20Nirvana%20Hills%20Apartment!5e0!3m2!1sen!2sin!4v1771931126838!5m2!1sen!2sin" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="event-item" data-aos="fade-right">
+        <span class="event-date">March 6, 2026 | 9:45 AM</span>
+        <h3 class="event-title">💍 The Wedding</h3>
+        <p class="event-loc">📍 Pasara</p>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15161.661692991061!2d80.1627164716083!3d18.19082387802054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a33a1e602fdf599%3A0xe0f48b41b29b08be!2sPSR%20GARDENS!5e0!3m2!1sen!2sin!4v1771931103854!5m2!1sen!2sin" loading="lazy"></iframe>
+        </div>
+      </div>
+
+      <div class="event-item" data-aos="fade-right">
+        <span class="event-date">March 8, 2026</span>
+        <h3 class="event-title">🥂 Reception</h3>
+        <p class="event-loc">📍 Manavedika, Hanamkonda</p>
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3794.5772334721933!2d79.52733727500011!3d17.998395682996772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a334ff4507fbb0f%3A0xfc9f71a331abf685!2sManaVedika!5e0!3m2!1sen!2sin!4v1771931081085!5m2!1sen!2sin" loading="lazy"></iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card" style="margin-top: 50px;" data-aos="zoom-in">
+      <h3>Contact</h3>
+      <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+        <a href="tel:7093507665" style="text-decoration: none; color: white; background: var(--primary); padding: 10px 20px; border-radius: 50px; font-weight: bold;">📞 Call Rohan</a>
+        <!-- <a href="tel:6488474748" style="text-decoration: none; color: white; background: var(--secondary); padding: 10px 20px; border-radius: 50px; font-weight: bold;">📞 Call Shruthi</a> -->
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p style="font-size: 1.2rem;">Made with ❤️ for Rohan & Shruthi</p>
+    <small style="opacity: 0.8;">Warangal | Telangana</small>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  
+  <script>
+    // Initialize Animations
+    AOS.init({ duration: 1000, once: true, offset: 100 });
+
+    // Initialize Swiper Carousel
+    var swiper = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      loop: true,
+      
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      
+      mousewheel: true,
+      keyboard: { enabled: true },
+      
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 200,
+        modifier: 1,
+        slideShadows: false,
+      },
+      
+      autoplay: {
+        delay: 2000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: false,
+      },
+      
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+
+    // ✅ MODERN VIEWER LOGIC
+    const viewer = document.getElementById("image-viewer");
+    const viewerImg = document.getElementById("viewer-img");
+
+    function openViewer(src) {
+      viewerImg.src = src;
+      viewer.classList.add("active");
+      swiper.autoplay.stop();
+    }
+
+    function closeViewer() {
+      viewer.classList.remove("active");
+      setTimeout(() => {
+        viewerImg.src = "";
+      }, 300);
+      swiper.autoplay.start();
+    }
+
+    // ✅ COUNTDOWN LOGIC
+    const weddingDate = new Date("March 6, 2026 09:45:00").getTime();
+    
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+
+      if (diff < 0) {
+        document.getElementById("countdown").innerHTML = "<h3>🎉 Happily Married!</h3>";
+        return;
+      }
+
+      document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+      document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+    }, 1000);
+  </script>
+
+</body>
+</html>
