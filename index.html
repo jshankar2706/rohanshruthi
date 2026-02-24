@@ -6,9 +6,7 @@
   <title>Rohan ❤️ Shruthi | The Wedding</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
-  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
   <style>
@@ -29,13 +27,15 @@
       background: var(--bg-gradient);
       color: var(--text);
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     h1, h2, h3 { margin: 0; }
 
-    /* ✅ HEADER */
+    /* ✅ HEADER - REDUCED SPACING */
     header {
-      min-height: 70vh; 
+      min-height: auto; 
+      padding: 50px 20px; 
       background: linear-gradient(135deg, #d14d72 0%, #ff9a9e 100%);
       position: relative;
       display: flex;
@@ -85,41 +85,30 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      padding: 40px;
+      padding: 30px; 
       border: 2px solid rgba(255, 255, 255, 0.3);
       border-radius: 20px;
       backdrop-filter: blur(5px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      margin: 20px;
+      margin: 10px;
     }
 
     .hero-title {
       font-family: "Great Vibes", cursive;
-      font-size: 5rem;
+      font-size: 4.5rem;
       line-height: 1.1;
       text-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      margin-bottom: 10px;
     }
 
     .hero-date {
-      font-size: 1.5rem;
-      font-weight: 300;
-      letter-spacing: 5px;
+      font-size: 1.15rem;
+      font-weight: 500;
       text-transform: uppercase;
       opacity: 0.95;
-    }
-
-    .hero-time {
-      font-size: 1.3rem;
-      font-weight: 600;
-      letter-spacing: 2px;
-      margin-top: 5px;
-      opacity: 0.9;
     }
     
     .hero-sub {
       font-size: 1rem;
-      margin-top: 15px;
       font-style: italic;
       opacity: 0.8;
       border-top: 1px solid rgba(255,255,255,0.4);
@@ -260,15 +249,9 @@
       transition: width 0.3s;
     }
 
-    /* ✅ MOBILE ADJUSTMENTS (HIDE ARROWS) */
     @media (max-width: 768px) {
-      .swiper-button-next, .swiper-button-prev {
-        display: none !important;
-      }
-      .swiper {
-        padding-left: 10px;
-        padding-right: 10px;
-      }
+      .swiper-button-next, .swiper-button-prev { display: none !important; }
+      .swiper { padding-left: 10px; padding-right: 10px; }
     }
 
     /* ✅ MODERN ZOOM VIEWER */
@@ -302,9 +285,7 @@
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27);
     }
 
-    #image-viewer.active img {
-      transform: scale(1);
-    }
+    #image-viewer.active img { transform: scale(1); }
 
     .close-viewer {
       position: absolute;
@@ -341,12 +322,10 @@
       top: 0;
       background: var(--primary);
       color: white;
-      width: 36px;
-      height: 36px;
+      width: 36px; height: 36px;
       border-radius: 50%;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: center; justify-content: center;
       font-size: 14px;
       border: 4px solid #fff;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -390,6 +369,48 @@
       padding: 50px 20px;
       border-radius: 30px 30px 0 0;
     }
+
+    /* ✅ SCROLL BUTTON */
+    .scroll-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 55px;
+      height: 55px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 26px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(209, 77, 114, 0.4);
+      transition: all 0.3s ease;
+      border: 3px solid white;
+    }
+
+    .scroll-btn:hover {
+      transform: scale(1.1);
+    }
+
+    /* Class added via JS when scrolled down */
+    .scroll-btn.up {
+      transform: rotate(180deg);
+      background: var(--secondary);
+    }
+    
+    /* Bounce animation when pointing down */
+    @keyframes bounceArrow {
+        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+        40% {transform: translateY(-8px);}
+        60% {transform: translateY(-4px);}
+    }
+
+    .scroll-btn:not(.up) {
+      animation: bounceArrow 2s infinite;
+    }
   </style>
 </head>
 <body>
@@ -399,6 +420,10 @@
     <img id="viewer-img" src="" alt="Full View" onclick="event.stopPropagation()">
   </div>
 
+  <div class="scroll-btn" id="scrollBtn">
+    ↓
+  </div>
+
   <header>
     <div class="hearts-bg">
       <span></span><span></span><span></span><span></span>
@@ -406,8 +431,7 @@
 
     <div class="hero-content" data-aos="fade-down">
       <div class="hero-title">Rohan <br> & <br> Shruthi</div>
-      <p class="hero-date">March 6th, 2026</p>
-      <p class="hero-time">9:45 AM</p>
+      <p class="hero-date">March 6th, 2026 9:45 AM</p>
       <span class="hero-sub">We're Getting Married!</span>
     </div>
   </header>
@@ -454,20 +478,18 @@
     
     <div class="swiper mySwiper" data-aos="fade-up">
       <div class="swiper-wrapper">
-        <div class="swiper-slide" onclick="openViewer('assets/couple1.jpg')"><img src="assets/couple1.jpg" alt="Couple 1"></div>
+        <div class="swiper-slide" onclick="openViewer('assets/girl2.jpeg')"><img src="assets/girl2.jpeg" alt="Girl 2"></div>
         <div class="swiper-slide" onclick="openViewer('assets/couple2.jpg')"><img src="assets/couple2.jpg" alt="Couple 2"></div>
-        <div class="swiper-slide" onclick="openViewer('assets/couple3.jpg')"><img src="assets/couple3.jpg" alt="Couple 3"></div>
+        <div class="swiper-slide" onclick="openViewer('assets/boy2.jpeg')"><img src="assets/boy2.jpeg" alt="Boy 2"></div>
+        <div class="swiper-slide" onclick="openViewer('assets/hero.jpg')"><img src="assets/hero.jpg" alt="Hero"></div>
         <div class="swiper-slide" onclick="openViewer('assets/couple4.jpg')"><img src="assets/couple4.jpg" alt="Couple 4"></div>
-        
+        <div class="swiper-slide" onclick="openViewer('assets/girl1.jpeg')"><img src="assets/girl1.jpeg" alt="Girl 1"></div>
         <div class="swiper-slide" onclick="openViewer('assets/couple1.jpg')"><img src="assets/couple1.jpg" alt="Couple 1"></div>
-        <div class="swiper-slide" onclick="openViewer('assets/couple2.jpg')"><img src="assets/couple2.jpg" alt="Couple 2"></div>
+        <div class="swiper-slide" onclick="openViewer('assets/boy1.jpeg')"><img src="assets/boy1.jpeg" alt="Boy 1"></div>
         <div class="swiper-slide" onclick="openViewer('assets/couple3.jpg')"><img src="assets/couple3.jpg" alt="Couple 3"></div>
-        <div class="swiper-slide" onclick="openViewer('assets/couple4.jpg')"><img src="assets/couple4.jpg" alt="Couple 4"></div>
       </div>
-      
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
-      
       <div class="swiper-pagination"></div>
     </div>
 
@@ -487,7 +509,7 @@
       <div class="event-item" data-aos="fade-right">
         <span class="event-date">March 6, 2026 | 9:45 AM</span>
         <h3 class="event-title">💍 The Wedding</h3>
-        <p class="event-loc">📍 Pasara</p>
+        <p class="event-loc">📍 PSR Gardens, Pasara</p>
         <div class="map-container">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15161.661692991061!2d80.1627164716083!3d18.19082387802054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a33a1e602fdf599%3A0xe0f48b41b29b08be!2sPSR%20GARDENS!5e0!3m2!1sen!2sin!4v1771931103854!5m2!1sen!2sin" loading="lazy"></iframe>
         </div>
@@ -496,7 +518,7 @@
       <div class="event-item" data-aos="fade-right">
         <span class="event-date">March 8, 2026</span>
         <h3 class="event-title">🥂 Reception</h3>
-        <p class="event-loc">📍 Manavedika, Hanamkonda</p>
+        <p class="event-loc">📍 ManaVedika, Hanamkonda</p>
         <div class="map-container">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3794.5772334721933!2d79.52733727500011!3d17.998395682996772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a334ff4507fbb0f%3A0xfc9f71a331abf685!2sManaVedika!5e0!3m2!1sen!2sin!4v1771931081085!5m2!1sen!2sin" loading="lazy"></iframe>
         </div>
@@ -508,7 +530,6 @@
       <h3>Contact</h3>
       <div style="margin-top: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
         <a href="tel:7093507665" style="text-decoration: none; color: white; background: var(--primary); padding: 10px 20px; border-radius: 50px; font-weight: bold;">📞 Call Rohan</a>
-        <!-- <a href="tel:6488474748" style="text-decoration: none; color: white; background: var(--secondary); padding: 10px 20px; border-radius: 50px; font-weight: bold;">📞 Call Shruthi</a> -->
       </div>
     </div>
 
@@ -533,15 +554,12 @@
       centeredSlides: true,
       slidesPerView: "auto",
       loop: true,
-      
       navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
       },
-      
       mousewheel: true,
       keyboard: { enabled: true },
-      
       coverflowEffect: {
         rotate: 0,
         stretch: 0,
@@ -549,20 +567,18 @@
         modifier: 1,
         slideShadows: false,
       },
-      
       autoplay: {
         delay: 2000,
         disableOnInteraction: false,
         pauseOnMouseEnter: false,
       },
-      
       pagination: {
         el: ".swiper-pagination",
         clickable: true,
       },
     });
 
-    // ✅ MODERN VIEWER LOGIC
+    // MODERN VIEWER LOGIC
     const viewer = document.getElementById("image-viewer");
     const viewerImg = document.getElementById("viewer-img");
 
@@ -580,7 +596,7 @@
       swiper.autoplay.start();
     }
 
-    // ✅ COUNTDOWN LOGIC
+    // COUNTDOWN LOGIC
     const weddingDate = new Date("March 6, 2026 09:45:00").getTime();
     
     setInterval(() => {
@@ -597,6 +613,30 @@
       document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
     }, 1000);
+
+    // SCROLL BUTTON LOGIC
+    const scrollBtn = document.getElementById('scrollBtn');
+    
+    window.addEventListener('scroll', () => {
+      // If we scroll past 200px, change arrow to UP
+      if (window.scrollY > 200) {
+        scrollBtn.classList.add('up');
+      } else {
+        scrollBtn.classList.remove('up');
+      }
+    });
+
+    scrollBtn.addEventListener('click', () => {
+      if (scrollBtn.classList.contains('up')) {
+        // Go to Top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        // Go Down (Scroll past header)
+        const headerHeight = document.querySelector('header').offsetHeight;
+        window.scrollTo({ top: headerHeight, behavior: 'smooth' });
+      }
+    });
+
   </script>
 
 </body>
