@@ -185,7 +185,7 @@
     .time-unit span { display: block; font-size: 1.6rem; font-weight: bold; margin-bottom: 2px;}
     .time-unit small { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
 
-    /* ✅ CAROUSEL (DESKTOP FRIENDLY) */
+    /* ✅ CAROUSEL */
     .swiper {
       width: 100%;
       padding-top: 20px;
@@ -221,7 +221,6 @@
       box-shadow: 0 20px 50px rgba(209, 77, 114, 0.25);
     }
 
-    /* NAVIGATION BUTTONS */
     .swiper-button-next, .swiper-button-prev {
       color: var(--primary);
       background: rgba(255, 255, 255, 0.8);
@@ -368,60 +367,58 @@
       text-align: center;
       padding: 50px 20px;
       border-radius: 30px 30px 0 0;
+      position: relative;
     }
 
-    /* ✅ SCROLL BUTTON */
-    .scroll-btn {
+    /* ✅ FLOATING SCROLL DOWN ICON */
+    #scroll-down {
       position: fixed;
       bottom: 25px;
       right: 25px;
-      width: 55px;
-      height: 55px;
+      width: 50px;
+      height: 50px;
       background: var(--primary);
       color: white;
       border-radius: 50%;
       display: flex;
-      justify-content: center;
       align-items: center;
-      font-size: 26px;
+      justify-content: center;
+      box-shadow: 0 5px 15px rgba(209, 77, 114, 0.4);
       cursor: pointer;
       z-index: 1000;
-      box-shadow: 0 4px 20px rgba(209, 77, 114, 0.4);
-      transition: all 0.3s ease;
-      border: 3px solid white;
+      transition: all 0.4s ease;
+      animation: bounce 2s infinite;
+      border: 2px solid white;
     }
 
-    .scroll-btn:hover {
-      transform: scale(1.1);
+    #scroll-down.hidden {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.5);
     }
 
-    /* Class added via JS when scrolled down */
-    .scroll-btn.up {
-      transform: rotate(180deg);
-      background: var(--secondary);
-    }
-    
-    /* Bounce animation when pointing down */
-    @keyframes bounceArrow {
-        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-        40% {transform: translateY(-8px);}
-        60% {transform: translateY(-4px);}
+    #scroll-down svg {
+      width: 28px;
+      height: 28px;
+      fill: currentColor;
     }
 
-    .scroll-btn:not(.up) {
-      animation: bounceArrow 2s infinite;
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-10px);}
+      60% {transform: translateY(-5px);}
     }
   </style>
 </head>
 <body>
 
+  <div id="scroll-down" onclick="scrollNext()">
+    <svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+  </div>
+
   <div id="image-viewer" onclick="closeViewer()">
     <div class="close-viewer">×</div>
     <img id="viewer-img" src="" alt="Full View" onclick="event.stopPropagation()">
-  </div>
-
-  <div class="scroll-btn" id="scrollBtn">
-    ↓
   </div>
 
   <header>
@@ -535,7 +532,7 @@
 
   </div>
 
-  <footer>
+  <footer id="main-footer">
     <p style="font-size: 1.2rem;">Made with ❤️ for Rohan & Shruthi</p>
     <small style="opacity: 0.8;">Warangal | Telangana</small>
   </footer>
@@ -614,29 +611,25 @@
       document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
     }, 1000);
 
-    // SCROLL BUTTON LOGIC
-    const scrollBtn = document.getElementById('scrollBtn');
-    
-    window.addEventListener('scroll', () => {
-      // If we scroll past 200px, change arrow to UP
-      if (window.scrollY > 200) {
-        scrollBtn.classList.add('up');
-      } else {
-        scrollBtn.classList.remove('up');
-      }
-    });
+    // ✅ SCROLL DOWN ICON LOGIC
+    const scrollBtn = document.getElementById("scroll-down");
 
-    scrollBtn.addEventListener('click', () => {
-      if (scrollBtn.classList.contains('up')) {
-        // Go to Top
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.onscroll = function() {
+      // Hide button if we are close to the bottom (footer reached)
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 120) {
+        scrollBtn.classList.add("hidden");
       } else {
-        // Go Down (Scroll past header)
-        const headerHeight = document.querySelector('header').offsetHeight;
-        window.scrollTo({ top: headerHeight, behavior: 'smooth' });
+        scrollBtn.classList.remove("hidden");
       }
-    });
+    };
 
+    function scrollNext() {
+      // Scrolls down by about 70% of the screen height to show next content
+      window.scrollBy({
+        top: window.innerHeight * 0.7,
+        behavior: 'smooth'
+      });
+    }
   </script>
 
 </body>
